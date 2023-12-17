@@ -16,7 +16,9 @@ def make_chain(triples):
 
 chain = make_chain(triples)
 def generate_text(chain, max_length=100):
-    word_1, word_2 = random.choice(list(chain.keys()))
+    keys = list(chain.keys())
+    first_words = random.choice([key for key in keys if key[0][0].isupper()])
+    word_1, word_2 = first_words
     new_text = [word_1, word_2]
     while len(new_text) < max_length:
         word_1, word_2 = word_2, random.choice(chain[(word_1, word_2)])
